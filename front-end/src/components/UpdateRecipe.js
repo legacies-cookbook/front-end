@@ -12,8 +12,8 @@ const initialState = {
 
 const UpdateRecipe = (props) => {
   const [formState, setFormState] = useState(initialState);
-  const { push } = useHistory();
-  const { id } = useParams();
+  // const { id } = useParams();
+  // const { push } = useHistory();
 
   useEffect(() => {
     axios
@@ -23,7 +23,7 @@ const UpdateRecipe = (props) => {
         setFormState(res.data);
       })
       .catch(err => console.log(err));
-  }, [id]);
+  }, []);
 
   const handleChanges = e => {
     e.persist();
@@ -36,17 +36,17 @@ const UpdateRecipe = (props) => {
       .put('', formState)
       .then(res => {
         console.log('Submitting edits: ', res)
-        setList(
-          list.map(recipe => {
-            if(recipe.id === res.data.id) {
-              return res.data
-            } else {
-              return recipe
-            }
-          })
-        );
+        // setList(
+        //   list.map(recipe => {
+        //     if(recipe.id === res.data.id) {
+        //       return res.data
+        //     } else {
+        //       return recipe
+        //     }
+        //   })
+        // );
         setFormState(initialState);
-        push('/');
+        // push('/');
       })
       .catch(err => console.log(err));
   };
@@ -64,30 +64,38 @@ const UpdateRecipe = (props) => {
         />
         <input
           type='text'
+          name='source'
+          placeholder='Source'
+          value={formState.source}
+          onChange={handleChanges}
+        />
+        <input
+          type='text'
           name='ingredients'
           placeholder='Ingredients'
           value={formState.ingredients}
           onChange={handleChanges}
         />
         <input
-          type='text'
+          type='textarea'
           name='instructions'
           placeholder='Instructions'
           value={formState.instructions}
           onChange={handleChanges}
         />
-        <input
-          type='text'
-          name='category'
-          placeholder='Category'
-          value={formState.category}
-          onChange={handleChanges}
-        />
+        <select name='category' id='category' >
+          <option value='' disabled selected>Select a Category</option>
+          <option value='' selected='selected'>Breakfast</option>
+          <option value='' selected='selected'>Lunch</option>
+          <option value='' selected='selected'>Dinner</option>
+          <option value='' selected='selected'>Dessert</option>
+          <option value='' selected='selected'>Gluten Free</option>
+          <option value='' selected='selected'>Vegetarian</option>
+        </select>
         <button>Save Edits</button>
       </form>
     </div>
   )
-
 };
 
 export default UpdateRecipe;
