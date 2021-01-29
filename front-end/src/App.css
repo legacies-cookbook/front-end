@@ -1,3 +1,70 @@
 .App {
   text-align: center;
 }
+
+/* Recipe List Component */
+
+.hero {
+  width: 100%;
+}
+
+.recipeList__search {
+  width: 20%; 
+  height: 1005;
+  border-right: 1px solid black;
+}
+
+.recipeList__body {
+  display: flex; 
+}
+
+.recipeList__content {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2% 5% 5% 5%;
+}
+
+/* Recipe List Card Component */
+
+.recipe_details {
+  display: none;
+}
+
+.RecipeListCard {
+  width: 400px;
+  height: 400px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.RecipeListCard:hover {
+  background-color: #FEC1AA;
+}
+
+.RecipeListCard:hover h3 {
+  color: black;
+}
+
+.RecipeListCard:hover .recipe_details {
+  display: inline-block;
+}
+
+.RecipeListCard img {
+  max-width: 100%;
+  height: auto;
+}
+
+.RecipeListCard__details {
+  display: flex;
+  height:10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.RecipeListCard__details h3 {
+  color: #fdb297;
+}
+
