@@ -55,6 +55,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
                 disabled={isSubmitting}>
              Submit
         </button>
+        <p style={{fontStyle: 'italic'}}>or</p>
            <button className='login-button' 
            type='button'>
             Sign up!

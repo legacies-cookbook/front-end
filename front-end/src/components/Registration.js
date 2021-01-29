@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage,  } from 'formik';
 
 
  
@@ -13,18 +13,30 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
        initialValues={{ name: '', email: '', password: '', tos: '' }}
        validate={values => {
          const errors = {};
-         if (!values.name) {
-            errors.name = 'Name Required';
-          } 
-           if (!values.email) {
-             errors.email = 'Required';
-           } else if (
+         
+          if (!values.name) {
+            errors.name = 'Required';
+         } else if (values.name.length < 2) {
+           errors.name = 'Must be at least 2 characters long';
+         } 
+
+         if (!values.password) {
+          errors.password = 'Required';
+       } else if (values.name.length < 6) {
+         errors.password = 'Must be at least 6 characters long';
+       } 
+
+          if (!values.email) {
+            errors.email = 'Required';
+         } else if (
              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
            ) {
-             errors.email = 'Invalid email address';
-           }
+            errors.email = 'Invalid email address';
+        }
            return errors;
-       }}
+
+          }}
+          
        onSubmit={(values, { setSubmitting }) => {
          setTimeout(() => {
            alert(JSON.stringify(values, null, 2));
@@ -39,9 +51,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
                 name="name" 
                 style={{ width: '150px', marginBottom: '20px'}} 
                 placeholder='enter name' />
-           <ErrorMessage 
-                name="name" 
-                component="p" />  
+             {errors.name ? <div>{errors.name}</div> : null}
            <Field 
                 type="email" 
                 name="email" 
