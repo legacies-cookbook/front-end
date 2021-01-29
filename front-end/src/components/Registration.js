@@ -1,95 +1,107 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage,  } from 'formik';
-
+import { useFormik } from 'formik';
+import chef from './images/chef.png'
+ 
+ const validate = values => {
+   const errors = {};
+ 
+   if (!values.firstName) {
+     errors.firstName = '';
+   } else if (values.firstName.length < 2) {
+     errors.firstName = 'Email must be more than 2 characters';
+   }
+ 
+   if (!values.lastName) {
+     errors.lastName = '';
+   } else if (values.lastName.length < 2) {
+     errors.lastName = 'Last name must be more than 2 characters';
+   }
+ 
+   if (!values.email) {
+     errors.email = '';
+   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+     errors.email = 'Invalid email address';
+   }
 
  
- const RegistrationForm = () => (
-   <div className='registration-container'>
-     <h1 
-     style={{ color: 'none', backgroundColor: '#f3ffca', width: '100%', textAlign: 'center', marginBottom: '20px'}}
-     >Sign up here!
-     </h1>
-     <Formik
-       initialValues={{ name: '', email: '', password: '', tos: '' }}
-       validate={values => {
-         const errors = {};
-         
-          if (!values.name) {
-            errors.name = 'Required';
-         } else if (values.name.length < 2) {
-           errors.name = 'Must be at least 2 characters long';
-         } 
-
-         if (!values.password) {
-          errors.password = 'Required';
-       } else if (values.name.length < 6) {
-         errors.password = 'Must be at least 6 characters long';
-       } 
-
-          if (!values.email) {
-            errors.email = 'Required';
-         } else if (
-             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-           ) {
-            errors.email = 'Invalid email address';
-        }
-           return errors;
-
-          }}
-          
-       onSubmit={(values, { setSubmitting }) => {
-         setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(false);
-         }, 400);
-       }}
-     >
-       {({ isSubmitting }) => (
-         <Form>
-           <Field 
-                type="name" 
-                name="name" 
-                style={{ width: '150px', marginBottom: '20px'}} 
-                placeholder='enter name' />
-             {errors.name ? <div>{errors.name}</div> : null}
-           <Field 
-                type="email" 
-                name="email" 
-                style={{ width: '150px', marginBottom: '20px'}} 
-                placeholder='enter email' />
-           <ErrorMessage 
-                name="email" 
-                component="div" />
-           <Field 
-                type="password" 
-                name="password" 
-                style={{ width: '150px', marginBottom: '20px'}} 
-                placeholder='enter password'/>
-           <ErrorMessage 
-                name="password" 
-                component="div" />
-            <Field 
-                type="checkbox" 
-                name="tos" 
-                style={{ width: '150px', marginBottom: '20px'}} />
-               
-           <ErrorMessage 
-                name="password" 
-                component="div" />
-           <button className='login-button'
-                type="submit" 
-                disabled={isSubmitting}>
-             Submit
-        </button>
-           <button className='login-button' 
-           type='button'>
-            Already Registered?
-        </button>
-         
-         </Form>
-       )}
-     </Formik>
-   </div>
- );
+   return errors;
+ };
  
+ const RegistrationForm = () => {
+   const formik = useFormik({
+     initialValues: {
+       firstName: '',
+       lastName: '',
+       email: '',
+     }
+     ,
+     validate,
+     onSubmit: values => {
+       alert(JSON.stringify(values, null, 2));
+     },
+   });
+   
+   return (
+     
+      
+    
+      <div className= 'registration-container'>
+        
+      <h1>Register Now</h1>
+      <img src={chef} alt='chef logo'/>
+      {formik.errors.firstName ? <div style={{color:'red'}}>{formik.errors.firstName}</div> : null}
+      {formik.errors.lastName ? <div style={{color: 'red'}}>{formik.errors.lastName}</div> : null}
+      {formik.errors.email ? <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
+      
+     <form onSubmit={formik.handleSubmit}>
+       <label htmlFor='firstName'>First Name</label>
+       <input
+         id='firstName'
+         placeholder='enter first name'
+         name='firstName'
+         type='text'
+         style={{width: '150px', marginBottom: '10px'}}
+         onChange={formik.handleChange}
+         onBlur={formik.handleBlur}
+         value={formik.values.firstName}
+       />
+       
+ 
+       <label htmlFor='lastName'>Last Name</label>
+       <input
+         id='lastName'
+         placeholder='enter last name'
+         name='lastName'
+         type='text'
+         style={{width: '150px', marginBottom: '10px'}}
+         onChange={formik.handleChange}
+         onBlur={formik.handleBlur}
+         value={formik.values.lastName}
+       />
+       
+ 
+       <label 
+       
+       htmlFor='email'>Email</label>
+       <input
+         id='email'
+         placeholder='enter email address'
+         name='email'
+         type='email'
+         style={{width: '150px', marginBottom: '0px'}}
+         onChange={formik.handleChange}
+         onBlur={formik.handleBlur}
+         value={formik.values.email}
+       />
+       
+ 
+       <button className='login-button' type='submit'>Submit</button>
+       <p style={{fontStyle:'italic', fontWeight:'bold', textDecoration:'underline'}}>OR</p>
+       <button className='login-button'  type='submit'>Login</button>
+     </form>
+     </div>
+   );
+ };
+
+
  export default RegistrationForm;
