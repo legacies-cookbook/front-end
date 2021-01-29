@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import chef from './images/chef.png'
+
  
  const validate = values => {
    const errors = {};
@@ -42,17 +42,16 @@ import chef from './images/chef.png'
    });
    
    return (
-     
-      
-    
       <div className= 'registration-container'>
         
       <h1>Register Now</h1>
-      <img src={chef} alt='chef logo'/>
+      
       {formik.errors.firstName ? <div style={{color:'red'}}>{formik.errors.firstName}</div> : null}
       {formik.errors.lastName ? <div style={{color: 'red'}}>{formik.errors.lastName}</div> : null}
       {formik.errors.email ? <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
       
+     
+     
      <form onSubmit={formik.handleSubmit}>
        <label htmlFor='firstName'>First Name</label>
        <input
@@ -60,7 +59,7 @@ import chef from './images/chef.png'
          placeholder='enter first name'
          name='firstName'
          type='text'
-         style={{width: '150px', marginBottom: '10px'}}
+         style={{width: '300px', marginBottom: '10px', padding: '12px'}}
          onChange={formik.handleChange}
          onBlur={formik.handleBlur}
          value={formik.values.firstName}
@@ -73,7 +72,7 @@ import chef from './images/chef.png'
          placeholder='enter last name'
          name='lastName'
          type='text'
-         style={{width: '150px', marginBottom: '10px'}}
+         style={{width: '300px', marginBottom: '10px', padding: '12px'}}
          onChange={formik.handleChange}
          onBlur={formik.handleBlur}
          value={formik.values.lastName}
@@ -88,18 +87,21 @@ import chef from './images/chef.png'
          placeholder='enter email address'
          name='email'
          type='email'
-         style={{width: '150px', marginBottom: '0px'}}
+         style={{width: '300px', marginBottom: '0px', padding: '12px'}}
          onChange={formik.handleChange}
          onBlur={formik.handleBlur}
          value={formik.values.email}
        />
        
+       
  
        <button className='login-button' type='submit'>Submit</button>
        <p style={{fontStyle:'italic', fontWeight:'bold', textDecoration:'underline'}}>OR</p>
        <button className='login-button'  type='submit'>Login</button>
+       
      </form>
      </div>
+     
    );
  };
 

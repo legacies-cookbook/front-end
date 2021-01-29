@@ -35,7 +35,7 @@ import { useFormik } from 'formik';
    
    return (
       <div className= 'login-container'>
-      <h1>Welcome!</h1>
+      <h1 style={{fontSize: '40px'}}>Welcome!</h1>
       
       {formik.errors.email ? <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
       {formik.errors.password ? <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
@@ -49,7 +49,7 @@ import { useFormik } from 'formik';
          placeholder='enter email address'
          name='email'
          type='email'
-         style={{width: '150px', marginBottom: '10px'}}
+         style={{width: '300px', marginBottom: '10px', padding: '12px'}}
          onChange={formik.handleChange}
          onBlur={formik.handleBlur}
          value={formik.values.email}
@@ -62,7 +62,7 @@ import { useFormik } from 'formik';
          placeholder='enter password'
          name='password'
          type='password'
-         style={{width: '150px', marginBottom: '50px'}}
+         style={{width: '300px', marginBottom: '50px', padding: '12px'}}
          onChange={formik.handleChange}
          onBlur={formik.handleBlur}
          value={formik.values.password}
