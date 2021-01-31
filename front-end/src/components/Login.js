@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import axios from 'axios'
  
  const validate = values => {
    const errors = {};
@@ -29,9 +30,17 @@ import { useFormik } from 'formik';
      ,
      validate,
      onSubmit: values => {
-       alert(JSON.stringify(values, null, 2));
-     },
-   });
+      axios
+      .post('https://reqres.in/api/users', values)
+      .then(res => {
+          (JSON.stringify(res.data, null, 8))
+          console.log('success', res)
+      })
+      .catch(err => {
+        console.log('failed request', err)
+      })
+     }}
+     )
    
    return (
       <div className= 'login-container'>
@@ -43,7 +52,7 @@ import { useFormik } from 'formik';
       
      <form onSubmit={formik.handleSubmit}>
      <label 
-       htmlFor='email'>Email</label>
+       htmlFor='email'>Email:</label>
        <input
          id='email'
          placeholder='enter email address'
@@ -56,7 +65,7 @@ import { useFormik } from 'formik';
        />
  
        <label 
-       htmlFor='password'>Password</label>
+       htmlFor='password'>Password:</label>
        <input
          id='password'
          placeholder='enter password'

@@ -1,5 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import axios from 'axios';
+
 
  
  const validate = values => {
@@ -8,7 +10,7 @@ import { useFormik } from 'formik';
    if (!values.firstName) {
      errors.firstName = '';
    } else if (values.firstName.length < 2) {
-     errors.firstName = 'Email must be more than 2 characters';
+     errors.firstName = 'First name must be more than 2 characters';
    }
  
    if (!values.lastName) {
@@ -23,6 +25,12 @@ import { useFormik } from 'formik';
      errors.email = 'Invalid email address';
    }
 
+   if (!values.tos) {
+    errors.tos = 'You must accept the terms of service';
+  } else if (values.tos.boolean === false) {
+    errors.tos = '';
+  }
+
  
    return errors;
  };
@@ -33,13 +41,23 @@ import { useFormik } from 'formik';
        firstName: '',
        lastName: '',
        email: '',
+       tos: false,
      }
      ,
      validate,
      onSubmit: values => {
-       alert(JSON.stringify(values, null, 2));
-     },
-   });
+      axios
+      .post('https://reqres.in/api/users', values)
+      .then(res => {
+          (JSON.stringify(res.data, null, 8))
+          console.log('success', res)
+      })
+      .catch(err => {
+        console.log('failed request', err)
+      })
+     }} 
+     )
+
    
    return (
       <div className= 'registration-container'>
@@ -49,11 +67,11 @@ import { useFormik } from 'formik';
       {formik.errors.firstName ? <div style={{color:'red'}}>{formik.errors.firstName}</div> : null}
       {formik.errors.lastName ? <div style={{color: 'red'}}>{formik.errors.lastName}</div> : null}
       {formik.errors.email ? <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
+      {formik.errors.tos ? <div style={{color: 'red'}}>{formik.errors.tos}</div> : null}
       
      
-     
      <form onSubmit={formik.handleSubmit}>
-       <label htmlFor='firstName'>First Name</label>
+       <label htmlFor='firstName'>First Name:</label>
        <input
          id='firstName'
          placeholder='enter first name'
@@ -66,7 +84,7 @@ import { useFormik } from 'formik';
        />
        
  
-       <label htmlFor='lastName'>Last Name</label>
+       <label htmlFor='lastName'>Last Name:</label>
        <input
          id='lastName'
          placeholder='enter last name'
@@ -81,7 +99,7 @@ import { useFormik } from 'formik';
  
        <label 
        
-       htmlFor='email'>Email</label>
+       htmlFor='email'>Email:</label>
        <input
          id='email'
          placeholder='enter email address'
@@ -92,12 +110,23 @@ import { useFormik } from 'formik';
          onBlur={formik.handleBlur}
          value={formik.values.email}
        />
+      <div className='tos'>
+      <label 
+      htmlFor='tos'>I accept the terms of service</label>
+       <input
+         id='tos'
+         name='tos'
+         type='checkbox'
+         onChange={formik.handleChange}
+         onBlur={formik.handleBlur}
+         value={formik.values.tos}
+         
+       />
+       </div>
        
-       
- 
        <button className='login-button' type='submit'>Submit</button>
        <p style={{fontStyle:'italic', fontWeight:'bold', textDecoration:'underline'}}>OR</p>
-       <button className='login-button'  type='submit'>Login</button>
+       <button className='login-button'>Login</button>
        
      </form>
      </div>
