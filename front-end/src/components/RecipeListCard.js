@@ -1,7 +1,6 @@
 import React from 'react'
 
 function RecipeListCard({title, source, photo, type}) {
-
     
     return (
         <div className="RecipeListCard">
