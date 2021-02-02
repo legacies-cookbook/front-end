@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios'
-import { Link } from 'react-router-dom'; 
+/* import { Link } from 'react-router-dom';  */
 
 
 const validate = values => {
@@ -90,11 +90,11 @@ const LoginForm = () => {
 
       <button className='login-button' type='submit'>Log In</button>
 
-      <Link to='/register' style={{textDecoration:'none'}}>
+      {/* <Link to='/register' style={{textDecoration:'none'}}> */}
         
       <button className='login-button' type='button'>Register</button>
       
-      </Link>
+      {/* </Link> */}
 
       <p style={{fontStyle:'italic', fontWeight:'bold'}}>Need to register?</p>
 
