@@ -8,6 +8,10 @@
   margin: 10%;
 }
 
+.update-header {
+  text-align: center;
+}
+
 .update-form {
   display: flex;
   flex-direction: column;

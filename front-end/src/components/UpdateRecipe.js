@@ -54,7 +54,7 @@ const UpdateRecipe = (props) => {
 
   return (
     <div className='update-div'>
-      <h2>Update Recipe</h2>
+      <h2 className='update-header'>Update Recipe</h2>
       <form onSubmit={submitForm} className='update-form'>
         <input
           type='text'
