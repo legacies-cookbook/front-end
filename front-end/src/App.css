@@ -1,3 +1,246 @@
-.App {
+.login-container {
+  display: block;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+  flex-direction: column;
   text-align: center;
 }
+
+/* Recipe List Component */
+
+.hero {
+  width: 100%;
+}
+
+.recipeList__search {
+  width: 20%; 
+  height: 1005;
+  border-right: 1px solid black;
+}
+
+.recipeList__body {
+  display: flex; 
+}
+
+.recipeList__content {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2% 5% 5% 5%;
+}
+
+/* Recipe List Card Component */
+
+.recipe_details {
+  display: none;
+}
+
+.RecipeListCard {
+  width: 400px;
+  height: 400px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.RecipeListCard:hover {
+  background-color: #FEC1AA;
+}
+
+.RecipeListCard:hover h3 {
+  color: black;
+}
+
+.RecipeListCard:hover .recipe_details {
+  display: inline-block;
+}
+
+.RecipeListCard img {
+  max-width: 100%;
+  height: auto;
+}
+
+.RecipeListCard__details {
+  display: flex;
+  height:10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.RecipeListCard__details h3 {
+  color: #fdb297;
+}
+
+/* Recipe Card Component */
+
+.recipeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+  height: auto;
+  border-radius: 3%;
+  border: 1px solid black;
+  overflow: hidden;
+  margin: 10%;
+}
+
+.recipeCard__top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: black;
+  color: #FFD579;
+}
+
+.recipeCard__top h1 {
+  padding-right: 3%;
+}
+
+.recipeCard__top h2 {
+  padding-left: 8%;
+}
+
+/* Set individual styles based on recipe type */
+
+.Dinner, .Breakfast, .Lunch, .Dessert, .Snack {
+  width: 35%;
+  height: 50%;
+  border-radius: 0 0 140px 0;
+  color: white;
+  background-color: #d19b25; 
+  text-align: left;
+}
+
+.Breakfast {
+  background-color: #D56B03;
+}
+
+.Lunch {
+  background-color: #9D3E98;
+}
+
+.Dinner {
+  background-color: #0173BA;
+}
+
+.Dessert {
+  background-color: #ED008C;
+}
+
+.recipeCard__body {
+  display: flex;
+  width: 100%;
+}
+
+.recipeCard__body h3 {
+  text-decoration: underline;
+}
+
+.recipeCard__body img {
+  width: 50%; 
+  height: auto;
+  object-fit: cover;
+}
+
+.recipeCard__body p {
+  text-align: left;
+  margin-left: 3%;
+}
+
+.recipeCard__body_step {
+  display: flex;
+  justify-content: flex-start; 
+  flex-wrap: wrap;
+}
+
+ .login-container {
+  justify-content: space-evenly;
+  text-decoration: none;
+  padding: 0px;
+  border: none;
+  width: 650px;
+  height: 600px;
+  background-color: #e5e8e8;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+
+.registration-container {
+  display: block;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-evenly;
+  padding: 0px;
+  border: none;
+  width: 650px;
+  height: 750px;
+  background-color: #e5e8e8;
+  box-shadow: inset 0 0 15px rgba(0,0,0,.5);
+
+}
+  
+  
+  .login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  min-width: 40%;
+  height: 50px;
+  border-radius: 10px;
+  font-weight: bold;
+  background-color: #db4d00;
+  box-shadow: inset 0 0 8px rgba(0,0,0,.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  }
+
+  .login-button:hover{
+  transform: skew(-5deg);
+  border-radius: 10px;
+  background-color: orangered;
+  }
+
+  
+  h1 {
+  width: 100%; 
+  font-family: "Segoe UI", "Ubuntu", "Roboto", "Open Sans", "Helvetica Neue", sans-serif;
+  margin-bottom: 30px;
+  font-weight: lighter;
+  }
+
+  p {
+  font-size: 12px;
+  }
+
+  input {
+  margin: 0 auto;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  }
+
+  .login-container, label {
+  display: flex;
+  font-weight: bold;
+  }
+
+  .registration-container, label {
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .tos {
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
