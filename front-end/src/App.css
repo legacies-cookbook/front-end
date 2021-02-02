@@ -1,6 +1,3 @@
-.App {
-  text-align: center;
-}
 
 /* Recipe List Component */
 
@@ -68,3 +65,85 @@
   color: #fdb297;
 }
 
+/* Recipe Card Component */
+
+.recipeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+  height: auto;
+  border-radius: 3%;
+  border: 1px solid black;
+  overflow: hidden;
+  margin: 10%;
+}
+
+.recipeCard__top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: black;
+  color: #FFD579;
+}
+
+.recipeCard__top h1 {
+  padding-right: 3%;
+}
+
+.recipeCard__top h2 {
+  padding-left: 8%;
+}
+
+/* Set individual styles based on recipe type */
+
+.Dinner, .Breakfast, .Lunch, .Dessert, .Snack {
+  width: 35%;
+  height: 50%;
+  border-radius: 0 0 140px 0;
+  color: white;
+  background-color: #d19b25; 
+  text-align: left;
+}
+
+.Breakfast {
+  background-color: #D56B03;
+}
+
+.Lunch {
+  background-color: #9D3E98;
+}
+
+.Dinner {
+  background-color: #0173BA;
+}
+
+.Dessert {
+  background-color: #ED008C;
+}
+
+.recipeCard__body {
+  display: flex;
+  width: 100%;
+}
+
+.recipeCard__body h3 {
+  text-decoration: underline;
+}
+
+.recipeCard__body img {
+  width: 50%; 
+  height: auto;
+  object-fit: cover;
+}
+
+.recipeCard__body p {
+  text-align: left;
+  margin-left: 3%;
+}
+
+.recipeCard__body_step {
+  display: flex;
+  justify-content: flex-start; 
+  flex-wrap: wrap;
+}
