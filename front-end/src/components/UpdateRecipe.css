@@ -23,18 +23,6 @@
   width: 50%;
 }
 
-#category {
-  width: auto;
-}
-
-#update-button {
-  width: auto;
-}
-
-#update-title {
-  width: auto;
-}
-
-#update-source {
+#category, #update-button, #update-title, #update-source {
   width: auto;
 }
