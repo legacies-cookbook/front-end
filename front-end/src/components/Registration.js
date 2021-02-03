@@ -1,22 +1,22 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
-/* import { Link } from 'react-router-dom';  */
+import { Link } from 'react-router-dom';
 
 
 const validate = values => {
   const errors = {};
  
-    if (!values.firstName) {
-      errors.firstName = '';
-    } else if (values.firstName.length < 2) {
-      errors.firstName = 'First name must be more than 2 characters';
+    if (!values.username) {
+      errors.username = '';
+    } else if (values.username.length < 6) {
+      errors.username = 'Username must be at least 6 characters';
     }
  
-    if (!values.lastName) {
-      errors.lastName = '';
-    } else if (values.lastName.length < 2) {
-      errors.lastName = 'Last name must be more than 2 characters';
+    if (!values.password) {
+      errors.password = '';
+    } else if (values.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters';
     }
  
     if (!values.email) {
@@ -37,8 +37,8 @@ const validate = values => {
   const RegistrationForm = () => {
     const formik = useFormik({
       initialValues: {
-        firstName: '',
-        lastName: '',
+        username: '',
+        password: '',
         email: '',
         tos: false,
       }
@@ -73,34 +73,34 @@ const validate = values => {
       <div className= 'registration-container'>
       <h1>Register Now</h1>
       
-      {formik.errors.firstName ? <div style={{color:'red'}}>{formik.errors.firstName}</div> : null}
-      {formik.errors.lastName ? <div style={{color: 'red'}}>{formik.errors.lastName}</div> : null}
+      {formik.errors.username ? <div style={{color:'red'}}>{formik.errors.username}</div> : null}
+      {formik.errors.password ? <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
       {formik.errors.email ? <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
       {formik.errors.tos ? <div style={{color: 'red'}}>{formik.errors.tos}</div> : null}
       
      
       <form onSubmit={formik.handleSubmit}>
-      <label htmlFor='firstName'>First Name:</label>
+      <label htmlFor='username'>Username:</label>
       <input
-        id='firstName'
-        placeholder='enter first name'
-        name='firstName'
+        id='username'
+        placeholder='create username'
+        name='username'
         type='text'
         style={{width: '300px', marginBottom: '10px', padding: '12px'}}
         onChange={formik.handleChange}
-        value={formik.values.firstName}
+        value={formik.values.username}
       />
        
  
-      <label htmlFor='lastName'>Last Name:</label>
+      <label htmlFor='password'>Password:</label>
       <input
-        id='lastName'
-        placeholder='enter last name'
-        name='lastName'
-        type='text'
+        id='password'
+        placeholder='create password'
+        name='password'
+        type='password'
         style={{width: '300px', marginBottom: '10px', padding: '12px'}}
         onChange={formik.handleChange}
-        value={formik.values.lastName}
+        value={formik.values.password}
       />
        
  
@@ -128,9 +128,11 @@ const validate = values => {
        
       <button className='login-button' type='submit'>Submit</button>
        
-      {/* <Link to='/login' style={{textDecoration:'none'}}> */}
+      <Link to='/login' style={{textDecoration:'none'}}> 
+      
       <button className='login-button' type='button'>Login</button>
-    {/* </Link> */}
+    
+      </Link>
 
       <p style={{fontStyle:'italic', fontWeight:'bold'}}>Already have an account?</p>
      
