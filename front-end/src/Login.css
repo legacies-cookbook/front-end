@@ -1,4 +1,10 @@
 .login-container {
+    display: block;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 20px;
+    flex-direction: column;
+    text-align: center;
     justify-content: space-evenly;
     text-decoration: none;
     padding: 0px;
@@ -7,7 +13,8 @@
     height: 600px;
     background-color: #e5e8e8;
     box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
-}
+    }
+  
   
 .registration-container {
     display: block;

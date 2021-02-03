@@ -1,20 +1,20 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios'
-/* import { Link } from 'react-router-dom';  */
+import { Link } from 'react-router-dom'; 
 
 
 const validate = values => {
   const errors = {};
  
     if (!values.username) {
-    errors.username = '';
+    errors.username = 'username required';
     } else if (values.username.length < 6) {
     errors.username = 'Username must be at least 6 characters';
     }
  
     if (!values.password) {
-      errors.password = '';
+      errors.password = 'password required';
     } else if (values.password.length < 6) {
       errors.password = 'Password must be at least 6 characters';
     }
@@ -90,11 +90,11 @@ const LoginForm = () => {
 
       <button className='login-button' type='submit'>Log In</button>
 
-      {/* <Link to='/register' style={{textDecoration:'none'}}> */}
+      <Link to='/register' style={{textDecoration:'none'}}>
         
       <button className='login-button' type='button'>Register</button>
       
-      {/* </Link> */}
+      </Link>
 
       <p style={{fontStyle:'italic', fontWeight:'bold'}}>Need to register?</p>
 

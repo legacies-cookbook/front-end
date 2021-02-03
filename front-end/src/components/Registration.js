@@ -8,19 +8,19 @@ const validate = values => {
   const errors = {};
  
     if (!values.username) {
-      errors.username = '';
+      errors.username = 'username required';
     } else if (values.username.length < 6) {
       errors.username = 'Username must be at least 6 characters';
     }
  
     if (!values.password) {
-      errors.password = '';
+      errors.password = 'password required';
     } else if (values.password.length < 6) {
       errors.password = 'Password must be at least 6 characters';
     }
  
     if (!values.email) {
-      errors.email = '';
+      errors.email = 'email required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
       errors.email = 'Invalid email address';
     }
@@ -63,9 +63,7 @@ const validate = values => {
       Array.from(document.querySelectorAll("input")).forEach(
         input => (input.value = "")
       )
-      this.setState({
-        itemvalues: [{}]
-      })
+      
     }
 
    
