@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
+import './UpdateRecipe.css';
 
 const initialState = {
   title: '',
@@ -52,12 +53,14 @@ const UpdateRecipe = (props) => {
   };
 
   return (
-    <div className='update-form'>
-      <h2>Update Recipe</h2>
-      <form onSubmit={submitForm}>
+    <div className='update-div'>
+      <h2 className='update-header'>Update Recipe</h2>
+      <form onSubmit={submitForm} className='update-form'>
         <input
           type='text'
           name='title'
+          className='update-form-fields'
+          id='update-title'
           placeholder='Title'
           value={formState.title}
           onChange={handleChanges}
@@ -65,34 +68,38 @@ const UpdateRecipe = (props) => {
         <input
           type='text'
           name='source'
+          className='update-form-fields'
+          id='update-source'
           placeholder='Source'
           value={formState.source}
           onChange={handleChanges}
         />
-        <input
-          type='text'
+        <textarea
+          type='textarea'
           name='ingredients'
+          className='update-form-fields'
           placeholder='Ingredients'
           value={formState.ingredients}
           onChange={handleChanges}
         />
-        <input
+        <textarea
           type='textarea'
           name='instructions'
+          className='update-form-fields'
           placeholder='Instructions'
           value={formState.instructions}
           onChange={handleChanges}
         />
-        <select name='category' id='category' >
-          <option value='' disabled selected>Select a Category</option>
-          <option value='' selected='selected'>Breakfast</option>
-          <option value='' selected='selected'>Lunch</option>
-          <option value='' selected='selected'>Dinner</option>
-          <option value='' selected='selected'>Dessert</option>
-          <option value='' selected='selected'>Gluten Free</option>
-          <option value='' selected='selected'>Vegetarian</option>
+        <select name='category' className='update-form-fields' id='category' >
+          <option disabled selected>--Select a Category--</option>
+          <option value='Breakfast'>Breakfast</option>
+          <option value='Lunch'>Lunch</option>
+          <option value='Dinner'>Dinner</option>
+          <option value='Dessert'>Dessert</option>
+          <option value='Gluten Free'>Gluten Free</option>
+          <option value='Vegetarian'>Vegetarian</option>
         </select>
-        <button>Save Edits</button>
+        <button className='update-form-fields' id='update-button'>Save Edits</button>
       </form>
     </div>
   )
