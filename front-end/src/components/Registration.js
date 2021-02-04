@@ -2,6 +2,8 @@ import React from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { register } from '../actions/UserActions';
 
 
 const validate = values => {
@@ -46,16 +48,19 @@ const validate = values => {
       validate,
 
     onSubmit: values => {
-      axios
-      .post('https://reqres.in/api/users', values)
-      .then(res => {
-        (JSON.stringify(res.data, null, 8))
-        console.log('success', res)
-        FormReset();
-      })
-      .catch(err => {
-        console.log('failed request', err)
-      })
+      register(values);
+      FormReset();
+      
+      // axios
+      // .post('https://reqres.in/api/users', values)
+      // .then(res => {
+      //   (JSON.stringify(res.data, null, 8))
+      //   console.log('success', res)
+      //   FormReset();
+      // })
+      // .catch(err => {
+      //   console.log('failed request', err)
+      // })
      }} 
     )
 
@@ -141,4 +146,4 @@ const validate = values => {
  };
 
 
- export default RegistrationForm;
+ export default connect({register})(RegistrationForm);

@@ -1,11 +1,12 @@
 import React from 'react';
-import data from "./data";
+import { connect } from 'react-redux';
+// import data from "./data";
 
 function RecipeCard() {
 
 
-    const recipe = data[1];
-    console.log(recipe);
+    // const recipe = data[1];
+    // console.log(recipe);
 
     return (
         <div className="recipeCard">
@@ -36,4 +37,10 @@ function RecipeCard() {
     )
 }
 
-export default RecipeCard
+const mapStateToProps = (state) => {
+    return {
+        recipes: state.recipes
+    }
+}
+
+export default connect(mapStateToProps)(RecipeCard)

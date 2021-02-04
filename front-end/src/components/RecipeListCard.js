@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux';
+import { recipeDetails } from '../actions/RecipeActions'
 
 function RecipeListCard({title, source, photo, type}) {
     
@@ -10,9 +12,9 @@ function RecipeListCard({title, source, photo, type}) {
                 <p>{type}</p>
             </div>
             <h2>{title}</h2>
-            <button className="recipe_details">View Recipe</button>
+            <button className="recipe_details" onClick={() => recipeDetails()}>View Recipe</button>
         </div>
     )
 }
 
-export default RecipeListCard
+export default connect({ recipeDetails })(RecipeListCard)

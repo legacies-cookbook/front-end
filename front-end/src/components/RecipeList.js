@@ -1,14 +1,17 @@
 import React from 'react';
-import data from "./data";
+import { connect } from 'react-redux';
+import { recipeDetails } from '../actions/RecipeActions';
+// import data from "./data";
 import RecipeListCard from "./RecipeListCard";
 import HeroImage from "../images/HeroImage.png";
 
 function RecipeList() {
 
-    const mockApiCall = data;
+    // const mockApiCall = data;
 
     const findRecipe = () => {
-        console.log("clicked")
+        console.log("clicked");
+        recipeDetails(); //is this meant to be here?
     }
 
     return (
@@ -25,7 +28,7 @@ function RecipeList() {
                 
             </div>
             <div className="recipeList__content">
-                {mockApiCall.map(recipe => {
+                {props.recipes.map(recipe => {
                     return <RecipeListCard key={recipe.id} title={recipe.title} source={recipe.source} photo={recipe.photo} type={recipe.type} />
                 })}
             </div>
@@ -34,4 +37,10 @@ function RecipeList() {
     )
 }
 
-export default RecipeList
+const mapStateToProps = (state) => {
+    return {
+        recipes: state.recipes
+    }
+}
+
+export default connect(mapStateToProps, {})(RecipeList);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { listRecipes, updateRecipe } from '../actions/RecipeActions';
 import './UpdateRecipe.css';
 
 const initialState = {
@@ -11,19 +12,11 @@ const initialState = {
   category: ''
 };
 
-const UpdateRecipe = (props) => {
+const UpdateRecipe = () => {
   const [formState, setFormState] = useState(initialState);
-  // const { id } = useParams();
-  // const { push } = useHistory();
 
   useEffect(() => {
-    axios
-      .get('')
-      .then(res => {
-        console.log(res);
-        setFormState(res.data);
-      })
-      .catch(err => console.log(err));
+    listRecipes();
   }, []);
 
   const handleChanges = e => {
@@ -33,23 +26,8 @@ const UpdateRecipe = (props) => {
 
   const submitForm = e => {
     e.preventDefault();
-    axios
-      .put('', formState)
-      .then(res => {
-        console.log('Submitting edits: ', res)
-        // setList(
-        //   list.map(recipe => {
-        //     if(recipe.id === res.data.id) {
-        //       return res.data
-        //     } else {
-        //       return recipe
-        //     }
-        //   })
-        // );
-        setFormState(initialState);
-        // push('/');
-      })
-      .catch(err => console.log(err));
+    updateRecipe();
+    setFormState(initialState);
   };
 
   return (
@@ -105,4 +83,4 @@ const UpdateRecipe = (props) => {
   )
 };
 
-export default UpdateRecipe;
+export default connect({ listRecipes, updateRecipe })(UpdateRecipe);
