@@ -7,16 +7,16 @@ import { Link } from 'react-router-dom';
 const validate = values => {
   const errors = {};
  
-    if (!values.password) {
-      errors.password = '';
-    } else if (values.password.length < 6) {
-      errors.password = 'Password must be at least 6 characters';
+    if (!values.username) {
+    errors.username = 'username required';
+    } else if (values.username.length < 6) {
+    errors.username = 'Username must be at least 6 characters';
     }
  
-    if (!values.email) {
-      errors.email = '';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
+    if (!values.password) {
+      errors.password = 'password required';
+    } else if (values.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters';
     }
  
    return errors;
@@ -25,7 +25,7 @@ const validate = values => {
 const LoginForm = () => {
   const formik = useFormik({
     initialValues: {
-      email: '',
+      username: '',
       password: '',
      }
      ,
@@ -58,20 +58,20 @@ const LoginForm = () => {
       <div className= 'login-container'>
       <h1>Sign In</h1>
       
-      {formik.errors.email ? <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
+      {formik.errors.username ? <div style={{color: 'red'}}>{formik.errors.username}</div> : null}
       {formik.errors.password ? <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
       
       <form onSubmit={formik.handleSubmit}>
-      <label htmlFor='email'>Email:</label>
+      <label htmlFor='username'>Username:</label>
       <input
-        id='email'
-        placeholder='enter email address'
-        name='email'
-        type='email'
+        id='username'
+        placeholder='enter username'
+        name='username'
+        type='text'
         style={{width: '300px', marginBottom: '10px', padding: '12px'}}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        value={formik.values.email}
+        value={formik.values.username}
       />
  
       <label htmlFor='password'>Password:</label>
