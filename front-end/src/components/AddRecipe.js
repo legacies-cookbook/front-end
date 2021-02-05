@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { listRecipes, updateRecipe } from '../actions/RecipeActions';
-import './UpdateRecipe.css';
+import './AddRecipe.css';
 
 const initialState = {
   title: '',
@@ -12,7 +12,7 @@ const initialState = {
   category: ''
 };
 
-const UpdateRecipe = () => {
+const AddRecipe = () => {
   const [formState, setFormState] = useState(initialState);
 
   useEffect(() => {
@@ -31,14 +31,14 @@ const UpdateRecipe = () => {
   };
 
   return (
-    <div className='update-div'>
-      <h2 className='update-header'>Update Recipe</h2>
-      <form onSubmit={submitForm} className='update-form'>
+    <div className='add-div'>
+      <h2 className='add-header'>add Recipe</h2>
+      <form onSubmit={submitForm} className='add-form'>
         <input
           type='text'
           name='title'
-          className='update-form-fields'
-          id='update-title'
+          className='add-form-fields'
+          id='add-title'
           placeholder='Title'
           value={formState.title}
           onChange={handleChanges}
@@ -46,8 +46,8 @@ const UpdateRecipe = () => {
         <input
           type='text'
           name='source'
-          className='update-form-fields'
-          id='update-source'
+          className='add-form-fields'
+          id='add-source'
           placeholder='Source'
           value={formState.source}
           onChange={handleChanges}
@@ -55,7 +55,7 @@ const UpdateRecipe = () => {
         <textarea
           type='textarea'
           name='ingredients'
-          className='update-form-fields'
+          className='add-form-fields'
           placeholder='Ingredients'
           value={formState.ingredients}
           onChange={handleChanges}
@@ -63,12 +63,12 @@ const UpdateRecipe = () => {
         <textarea
           type='textarea'
           name='instructions'
-          className='update-form-fields'
+          className='add-form-fields'
           placeholder='Instructions'
           value={formState.instructions}
           onChange={handleChanges}
         />
-        <select name='category' className='update-form-fields' id='category' >
+        <select name='category' className='add-form-fields' id='category' >
           <option disabled selected>--Select a Category--</option>
           <option value='Breakfast'>Breakfast</option>
           <option value='Lunch'>Lunch</option>
@@ -77,10 +77,10 @@ const UpdateRecipe = () => {
           <option value='Gluten Free'>Gluten Free</option>
           <option value='Vegetarian'>Vegetarian</option>
         </select>
-        <button className='update-form-fields' id='update-button'>Save Edits</button>
+        <button className='add-form-fields' id='add-button'>Save Edits</button>
       </form>
     </div>
   )
 };
 
-export default connect({ listRecipes, updateRecipe })(UpdateRecipe);
+export default connect({ listRecipes, updateRecipe })(AddRecipe);

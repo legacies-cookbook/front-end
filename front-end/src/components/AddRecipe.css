@@ -1,4 +1,4 @@
-.update-div {
+.add-div {
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -9,7 +9,7 @@
   border-radius: 3%;
 }
 
-.update-header {
+.add-header {
   text-align: center;
   color: #FFD579;
   background-color: black;
@@ -18,18 +18,18 @@
   font-size: 3rem;
 }
 
-.update-form {
+.add-form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.update-form-fields {
+.add-form-fields {
   margin: 1%;
   width: 50%;
 }
 
-#category, #update-button, #update-title, #update-source {
+#category, #add-button, #add-title, #add-source {
   width: auto;
 }
 
