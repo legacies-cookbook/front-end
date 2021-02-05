@@ -2,6 +2,8 @@ import React from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector} from 'react-redux';
+import { register } from '../actions/UserActions';
 
 
 const validate = values => {
@@ -34,7 +36,13 @@ const validate = values => {
    return errors;
 }
  
-  const RegistrationForm = () => {
+  const Registration = (props) => {
+
+    const userRegister = useSelector((state) => state.register);
+    const {userInfo, loading, error} = userRegister;
+    const dispatch = useDispatch();
+
+    console.log(props); 
     const formik = useFormik({
       initialValues: {
         username: '',
@@ -46,20 +54,25 @@ const validate = values => {
       validate,
 
     onSubmit: values => {
-      axios
-      .post('https://reqres.in/api/users', values)
-      .then(res => {
-        (JSON.stringify(res.data, null, 8))
-        console.log('success', res)
-        FormReset();
-      })
-      .catch(err => {
-        console.log('failed request', err)
-      })
+      console.log("values", values)
+      dispatch(register(values.username, values.password))
+      FormReset();
+      
+      // axios
+      // .post('https://reqres.in/api/users', values)
+      // .then(res => {
+      //   (JSON.stringify(res.data, null, 8))
+      //   console.log('success', res)
+      //   FormReset();
+      // })
+      // .catch(err => {
+      //   console.log('failed request', err)
+      // })
      }} 
     )
 
-    const FormReset = () => {
+    const FormReset = (state) => {
+      console.log(state)
       Array.from(document.querySelectorAll("input")).forEach(
         input => (input.value = "")
       )
@@ -141,4 +154,4 @@ const validate = values => {
  };
 
 
- export default RegistrationForm;
+ export default Registration;

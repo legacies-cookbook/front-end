@@ -1,16 +1,25 @@
-import React from 'react';
-import data from "./data";
+import React, {useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import RecipeListCard from "./RecipeListCard";
 import HeroImage from "../images/HeroImage.png";
+import {listRecipes} from "../actions/RecipeActions";
 
-function RecipeList() {
+function RecipeList(state) {
 
-    const mockApiCall = data;
+    const recipeList = useSelector((state) => state.listRecipes)
+    console.log(recipeList);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(listRecipes())
+    }, [dispatch])
 
     const findRecipe = () => {
-        console.log("clicked")
+        console.log("clicked");
     }
 
+    
     return (
         <div className="recipeList">
             <img className="hero" src={HeroImage} alt="Hero Image"/>
@@ -25,13 +34,15 @@ function RecipeList() {
                 
             </div>
             <div className="recipeList__content">
-                {mockApiCall.map(recipe => {
+                {/* {recipes.map(recipe => {
                     return <RecipeListCard key={recipe.id} title={recipe.title} source={recipe.source} photo={recipe.photo} type={recipe.type} />
-                })}
+                })} */}
             </div>
             </div>
         </div>
     )
 }
 
-export default RecipeList
+
+
+export default RecipeList;

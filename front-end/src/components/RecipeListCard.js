@@ -1,6 +1,8 @@
 import React from 'react'
 
-function RecipeListCard({title, source, photo, type}) {
+function RecipeListCard({title, source, photo, type, id}) {
+
+    
     
     return (
         <div className="RecipeListCard">
