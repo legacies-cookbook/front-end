@@ -8,7 +8,7 @@ import * as userReducer from './reducers/userReducer';
 import { Provider } from 'react-redux';
 
 import RecipeList from "./components/RecipeList";
-import UpdateRecipe from './components/UpdateRecipe';
+import AddRecipe from './components/AddRecipe';
 import Login from "./components/Login";
 import Registration from './components/Registration';
 
@@ -46,8 +46,8 @@ function App() {
             <PrivateRoute exact path='/recipes'>
               <RecipeList />
             </PrivateRoute>
-            <PrivateRoute exact path='/update-recipe'>
-              <UpdateRecipe />
+            <PrivateRoute exact path='/add-recipe'>
+              <AddRecipe />
             </PrivateRoute>
             <Route path='/login'>
               <Login />
