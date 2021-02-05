@@ -1,18 +1,21 @@
-describe('Login Form Testing', () => {
+describe('Registration Form Testing', () => {
 
     beforeEach( () => {
-        cy.visit('http://localhost:3000/login')
+        cy.visit('http://localhost:3001/register')
         console.log('test')
     })
 
     const userNameInput = () => cy.get('#username')
     const passwordInput = () => cy.get('#password')
+    const emailInput = () => cy.get('#email')
+    const tosInput = () => cy.get('#tos')
     const submitButton = () => cy.get('[type="submit"]')
     
 
 
     const personUserName = 'Uniquename123'
     const personPassword = 'password123'
+    const personEmail = 'legacies@gmail.com'
     
     
     
@@ -33,12 +36,33 @@ describe('Login Form Testing', () => {
           
 
     })
+
+
+    it('allows user to add new email in email input', () => {
+        //Get the Email input and type an email address in it
+        
+        emailInput().type(personEmail)
+          
+
+    })
+
+    
+
+    it('allows user to check the terms of service box', () => {
+        
+        tosInput().click()
+        
+
+
+    })
     
 
     it('allows user to submit the form by meeting schema req', () => {
         
         userNameInput().type(personUserName)
         passwordInput().type(personPassword)
+        emailInput().type(personEmail)
+        tosInput().click()
         submitButton().click()
         
 
