@@ -60,7 +60,7 @@ export const listRecipes = () => (dispatch) => {
 // // }
 
 // // // Updates an existing recipe
-// // export const updateRecipe = (ingredients, instructions) => async (dispatch) => {
+// // export const updateRecipe = (title, source, type, ingredients, instructions) => async (dispatch) => {
 // //     dispatch({type: actions.UPDATE_RECIPE_REQUEST});
 // //     try {
 // //         const {data} = await axiosWithAuth.put(`/recipes/${id}`, { // change to `/recipes/:${id}` if unsuccessful

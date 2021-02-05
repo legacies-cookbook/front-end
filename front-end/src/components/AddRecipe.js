@@ -22,7 +22,7 @@ const AddRecipe = () => {
 
   const submitForm = e => {
     e.preventDefault();
-    addNewRecipe();
+    addNewRecipe(formState);
     setFormState(initialState);
   };
 
