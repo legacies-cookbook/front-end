@@ -5,6 +5,7 @@ import { PrivateRoute } from './utils/PrivateRoute';
 
 import RecipeList from "./components/RecipeList";
 // import UpdateRecipe from './components/UpdateRecipe';
+import AddRecipe from './components/AddRecipe';
 import Login from "./components/Login";
 import Registration from './components/Registration';
 
@@ -35,16 +36,20 @@ function App(props) {
               <Link onClick={logout}>Logout</Link>
             </li>
           </ul>
-           <Switch>
-           <PrivateRoute exact path='/recipes'>
-            <RecipeList />
-          </PrivateRoute>
-          {/*<PrivateRoute exact path='/update-recipe'>
-            <UpdateRecipe />
-          </PrivateRoute> */}
-            <Route path='/login' component={Login} />
-            <Route path='/register' component={Registration} />
-          </Switch> 
+          <Switch>
+            <PrivateRoute exact path='/recipes'>
+              <RecipeList />
+            </PrivateRoute>
+            <PrivateRoute exact path='/add-recipe'>
+              <AddRecipe />
+            </PrivateRoute>
+            <Route path='/login'>
+              <Login />
+            </Route>
+            <Route path='/register'>
+              <Registration />
+            </Route>
+          </Switch>
         </div>
       </Router>
   );
