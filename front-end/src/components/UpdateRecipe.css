@@ -1,0 +1,38 @@
+.update-div {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: auto;
+  border: 1px solid black;
+  overflow: hidden;
+  margin: 10%;
+  border-radius: 3%;
+}
+
+.update-header {
+  text-align: center;
+  color: #FFD579;
+  background-color: black;
+  margin-top: 0;
+  padding: 2%;
+  font-size: 3rem;
+}
+
+.update-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.update-form-fields {
+  margin: 1%;
+  width: 50%;
+}
+
+#category, #update-button, #update-title, #update-source {
+  width: auto;
+}
+
+textarea {
+  height: 200px;
+}
