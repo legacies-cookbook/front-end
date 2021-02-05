@@ -1,8 +1,8 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import axios from 'axios'
+import axios from 'axios';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import { Link } from 'react-router-dom'; 
-import { connect } from 'react-redux';
 import { login } from '../actions/UserActions';
 
 
@@ -24,7 +24,13 @@ const validate = values => {
    return errors;
  };
  
-const LoginForm = () => {
+const LoginForm = (state) => {
+
+  const userLogin = useSelector((state) => state.login);
+  const {userInfo, loading, error} = userLogin;
+  
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -34,7 +40,8 @@ const LoginForm = () => {
       validate,
       
       onSubmit: values => {
-        login(values);
+        console.log(values)
+        dispatch(login(values.username, values.password))
         FormReset();
       // axios
       // .post('https://reqres.in/api/users', values)
@@ -108,4 +115,4 @@ const LoginForm = () => {
  };
 
 
- export default connect({login})(LoginForm);
+ export default LoginForm;

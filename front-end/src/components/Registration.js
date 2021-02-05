@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { register } from '../actions/UserActions';
 
 
@@ -36,7 +36,13 @@ const validate = values => {
    return errors;
 }
  
-  const RegistrationForm = () => {
+  const Registration = (props) => {
+
+    const userRegister = useSelector((state) => state.register);
+    const {userInfo, loading, error} = userRegister;
+    const dispatch = useDispatch();
+
+    console.log(props); 
     const formik = useFormik({
       initialValues: {
         username: '',
@@ -48,7 +54,8 @@ const validate = values => {
       validate,
 
     onSubmit: values => {
-      register(values);
+      console.log("values", values)
+      dispatch(register(values.username, values.password))
       FormReset();
       
       // axios
@@ -64,7 +71,8 @@ const validate = values => {
      }} 
     )
 
-    const FormReset = () => {
+    const FormReset = (state) => {
+      console.log(state)
       Array.from(document.querySelectorAll("input")).forEach(
         input => (input.value = "")
       )
@@ -146,4 +154,4 @@ const validate = values => {
  };
 
 
- export default connect({register})(RegistrationForm);
+ export default Registration;
