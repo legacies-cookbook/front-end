@@ -12,11 +12,10 @@ import Registration from './components/Registration';
 import './App.css';
 import './Login.css';
 
-function App(props) {
+function App() {
 
   const logout = () => {
     localStorage.removeItem('token');
-    props.history.push("/login");
   };
 
   return (

@@ -1,18 +1,24 @@
-import React, {useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import RecipeListCard from "./RecipeListCard";
 import HeroImage from "../images/HeroImage.png";
-import {listRecipes} from "../actions/RecipeActions";
+import {listRecipes, addNewRecipe} from "../actions/RecipeActions";
 
-function RecipeList(state) {
+function RecipeList(props) {
 
-    const recipeList = useSelector((state) => state.listRecipes)
-    console.log(recipeList);
+    const recipeList = useSelector((state) => state.recipeList.recipes)
+    console.log(recipeList)
+    
+    const addRecipes = useSelector((state) => state.addNewRecipe)
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(listRecipes())
+    const[recipies, setRecipies] = useState([]);
+    
+
+    useEffect(async(state) =>  {
+        await dispatch(listRecipes());
+        setRecipies(recipeList)
     }, [dispatch])
 
     const findRecipe = () => {
@@ -34,9 +40,11 @@ function RecipeList(state) {
                 
             </div>
             <div className="recipeList__content">
-                {/* {recipes.map(recipe => {
-                    return <RecipeListCard key={recipe.id} title={recipe.title} source={recipe.source} photo={recipe.photo} type={recipe.type} />
-                })} */}
+              { !recipeList 
+              ? <h1>Loading...</h1>
+              : recipeList.map(recipe => {
+                    return <RecipeListCard key={recipe.id} title={recipe.title} source={recipe.source} photo={recipe.notes} type={recipe.type} />
+                })}
             </div>
             </div>
         </div>

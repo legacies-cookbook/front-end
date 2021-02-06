@@ -1,24 +1,37 @@
-// import * as actions from "../constants/recipeConstants";
+import * as actions from "../constants/recipeConstants";
 
-// const initialState = []
+const initialState = {recipes: [], loading: false, error: ""}
 
-// export const recipeListReducer = (state = initialState, action) => {
-//     switch(action.type) {
-//         case actions.FETCH_RECIPE_REQUEST: 
-//             return {loading: true};
-//         case actions.FETCH_RECIPE_SUCCESS:
-//             return {
-//                 loading: false,
-//                 recipes: action.payload
-//             };
-//         case actions.FETCH_RECIPES_FAILURE:
-//             return {
-//                 loading: false,
-//                 error: action.payload
-//             };
-//         default: return state;
-//     }
-// }
+export const recipeListReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case actions.FETCH_RECIPES_REQUEST: 
+            return {loading: true};
+        case actions.FETCH_RECIPES_SUCCESS:
+            console.log("yes?")
+            return {
+                loading: false,
+                recipes: action.payload
+            };
+        case actions.FETCH_RECIPES_FAILURE:
+            return {
+                loading: false,
+                error: action.payload
+            };
+            case actions.ADD_RECIPE_REQUEST:
+                return {loading: true};
+            case actions.ADD_RECIPE_SUCCESS:
+                return {
+                    loading: true,
+                    recipies: [...state, action.payload],
+                }
+            case actions.ADD_RECIPE_FAILURE:
+                return {
+                    loading: false,
+                    error: action.payload
+                }
+        default: return state;
+    }
+}
 
 // export const recipeDetailsReducer = (state = initialState, action) => {
 //     switch(action.type) {
@@ -45,7 +58,7 @@
 //         case actions.ADD_RECIPE_SUCCESS:
 //             return {
 //                 loading: true,
-//                 recipies: action.payload,
+//                 recipies: [...state, action.payload],
 //             }
 //         case actions.ADD_RECIPE_FAILURE:
 //             return {
