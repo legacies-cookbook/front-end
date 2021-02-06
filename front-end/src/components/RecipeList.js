@@ -3,6 +3,7 @@ import { useDispatch, useSelector, connect } from 'react-redux';
 import RecipeListCard from "./RecipeListCard";
 import HeroImage from "../images/HeroImage.png";
 import {listRecipes, addNewRecipe} from "../actions/RecipeActions";
+import {Link} from "react-router-dom";
 
 function RecipeList(props) {
 
@@ -36,7 +37,9 @@ function RecipeList(props) {
                     <input type="text" placeholder="placeholder text"/>
                     <button type="submit">test</button>
                 </form>
-                <h3>Filter recipes by type</h3>
+                <Link to="/add"> {/*Tried to link to addRecipe page but nothing loads"*/}
+                    Add New Recipe 
+                </Link>
                 
             </div>
             <div className="recipeList__content">

@@ -8,6 +8,7 @@ import RecipeList from "./components/RecipeList";
 // import AddRecipe from './components/AddRecipe';
 import Login from "./components/Login";
 import Registration from './components/Registration';
+import AddRecipe from './components/AddRecipe';
 
 import './App.css';
 import './Login.css';
@@ -47,6 +48,9 @@ function App() {
             </Route>
             <Route path='/register'>
               <Registration />
+            </Route>
+            <Route path='/add'>
+              <AddRecipe />
             </Route>
           </Switch>
         </div>
