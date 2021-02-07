@@ -3,9 +3,9 @@ import { useDispatch, useSelector} from 'react-redux';
 import {recipeDetails} from "../actions/RecipeActions";
 
 
-function RecipeCard({id}) {
+function RecipeCard(id) {
 
-    console.log(id)
+    console.log("Recipe Card: ", id)
 
     const item = useSelector((state) => state.recipeInfo.recipe)
     
@@ -26,6 +26,10 @@ function RecipeCard({id}) {
                     <h2>{item.data[0].type}</h2>
                 </div>
                 <h1>{item.data[0].title}</h1>
+            </div>
+            <div className='recipeCard_buttons'>
+              <button className='recipeCard_button'>Edit</button>
+              <button className='recipeCard_button'>Delete</button>
             </div>
             <div className="recipeCard__body">
                 <img src={item.data[0].notes} alt="recipe photo"/>

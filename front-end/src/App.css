@@ -110,6 +110,24 @@ li {
   padding-left: 8%;
 }
 
+.recipeCard_buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: auto;
+}
+
+.recipeCard_button {
+  background-color: #FFD579;
+  margin: 1% 1% 0 0;
+  width: 6%;
+  height: auto;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
 /* Set individual styles based on recipe type */
 
 .Dinner, .Breakfast, .Lunch, .Dessert, .Snack {
