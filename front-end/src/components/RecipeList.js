@@ -7,20 +7,19 @@ import {Link} from "react-router-dom";
 
 function RecipeList(props) {
 
-    const recipeList = useSelector((state) => state.recipeList.recipes)
+    const recipeList = useSelector((state) => state.recipe.recipes)
     console.log(recipeList)
     
     const addRecipes = useSelector((state) => state.addNewRecipe)
 
     const dispatch = useDispatch();
 
-    const[recipies, setRecipies] = useState([]);
+    const [loading, setLoading] = useState(false)
     
 
-    useEffect(async(state) =>  {
-        await dispatch(listRecipes());
-        setRecipies(recipeList)
-    }, [dispatch])
+    useEffect(() =>  {
+        dispatch(listRecipes());
+    }, [dispatch, loading])
 
     const findRecipe = () => {
         console.log("clicked");
@@ -46,7 +45,7 @@ function RecipeList(props) {
               { !recipeList 
               ? <h1>Loading...</h1>
               : recipeList.map(recipe => {
-                    return <RecipeListCard key={recipe.id} title={recipe.title} source={recipe.source} photo={recipe.notes} type={recipe.type} />
+                    return <RecipeListCard key={recipe.id} id={recipe.id} title={recipe.title} source={recipe.source} photo={recipe.notes} type={recipe.type} reload={setLoading}/>
                 })}
             </div>
             </div>

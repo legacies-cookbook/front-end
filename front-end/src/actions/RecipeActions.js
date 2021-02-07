@@ -28,22 +28,6 @@ export const recipeDetails = (id) => (dispatch) => {
     })
 }
 
-// Adds a new recipe 
-// export const addNewRecipe = (recipe) => async (dispatch) => {
-//     dispatch({type: actions.ADD_RECIPE_REQUEST});
-//     try {
-//         const {data} = await axiosWithAuth().post("/recipes", recipe);
-//         dispatch({type: actions.ADD_RECIPE_SUCCESS, payload: data});
-//     } catch(error) {
-//         dispatch({type: actions.ADD_RECIPE_FAILURE,
-//             payload:
-//                 error.resposne && error.response.message
-//                 ? error.response.message
-//                 : error.message
-//             }) 
-//     }
-// }
-
 export const addNewRecipe = (recipe) => (dispatch) => {
     dispatch({type: actions.ADD_RECIPE_REQUEST});
     axiosWithAuth().post("/recipes", {
@@ -85,7 +69,7 @@ export const addNewRecipe = (recipe) => (dispatch) => {
  // Deletes a recipe
 export const deleteRecipe = (id) => (dispatch) => {
     dispatch({type: actions.DELETE_RECIPE_REQUEST});
-    axiosWithAuth.delete(`/recipes/${id}`)
+    axiosWithAuth().delete(`/recipes/${id}`)
     .then((res) => dispatch({type: actions.DELETE_RECIPE_SUCCESS, payload: res}))
     .catch((error) => {
         dispatch({type: actions.DELETE_RECIPE_FAILURE,

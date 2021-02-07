@@ -1,10 +1,15 @@
 import React from 'react';
-import RecipeCard from "./RecipeCard";
-import {Route, Link} from "react-router-dom"; 
+import { useDispatch } from 'react-redux';
+import {deleteRecipe} from "../actions/RecipeActions";
+import {useHistory, Link} from "react-router-dom"; 
 
-function RecipeListCard({title, source, photo, type, id}) {
+function RecipeListCard({title, source, photo, type, id, }) {
 
-    
+    const dispatch = useDispatch()
+
+    const deleteItem = async (id) => {
+        await dispatch(deleteRecipe(id));
+    }
     
     return (
         <div className="RecipeListCard">
@@ -14,13 +19,10 @@ function RecipeListCard({title, source, photo, type, id}) {
                 <p>{type}</p>
             </div>
             <h2>{title}</h2>
-            <Link to="/details">
+            <Link to={`/details/${id}`}>
                 View Recipe
-                </Link>
-            <Route path="/details">
-                <RecipeCard id={id} />
-            </Route>
-                
+            </Link>
+            <button onClick={deleteItem(id)}>Delete Recipe</button>  
         </div>
     )
 }

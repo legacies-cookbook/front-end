@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import * as recipeReducer from './reducers/recipeReducer';
+import {recipeReducer, addRecipeReducer, deleteRecipeReducer} from './reducers/recipeReducer';
 import * as userReducer from './reducers/userReducer';
 
 const initialState = {
@@ -17,11 +17,9 @@ const reducer = combineReducers({
     login: userReducer.userLoginReducer,
     register: userReducer.userRegisterReducer,
     // Recipe Reducers
-    recipeList: recipeReducer.recipeListReducer,
-    recipeInfo: recipeReducer.recipeDetailsReducer,
-    // updateRecipe: recipeReducer.editRecipeReducer,
-    addRecipe: recipeReducer.addRecipeReducer,
-    // deleteRecipe: recipeReducer.deleteRecipeReducer,
+    recipe: recipeReducer,
+    addRecipe: addRecipeReducer,
+    deleteRecipe: deleteRecipeReducer,
   });
 
   const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

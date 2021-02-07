@@ -44,7 +44,7 @@ function App() {
             <PrivateRoute exact path='/add'>
               <AddRecipe />
             </PrivateRoute>
-            <PrivateRoute exact path='/details'>
+            <PrivateRoute path='/details/:id'>
               <RecipeCard />
             </PrivateRoute>
             <Route path='/login'>

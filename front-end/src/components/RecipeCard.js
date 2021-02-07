@@ -1,19 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {recipeDetails} from "../actions/RecipeActions";
+import {useParams} from "react-router-dom";
 
+function RecipeCard() {
 
-function RecipeCard({id}) {
-
+    const {id} = useParams()
     console.log(id)
 
-    const item = useSelector((state) => state.recipeInfo.recipe)
+    const item = useSelector((state) => state.recipe.recipe)
     
 
     const dispatch = useDispatch()
     
-    useEffect(async() => {
-        await dispatch(recipeDetails(3))
+    useEffect(() => {
+        dispatch(recipeDetails(id))
     }, [dispatch])
 
     return (

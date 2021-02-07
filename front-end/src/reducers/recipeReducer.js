@@ -2,7 +2,7 @@ import * as actions from "../constants/recipeConstants";
 
 const initialState = {recipes: [], loading: false, error: ""}
 
-export const recipeListReducer = (state = initialState, action) => {
+export const recipeReducer = (state = initialState, action) => {
     switch(action.type) {
         case actions.FETCH_RECIPES_REQUEST: 
             return {loading: true};
@@ -16,27 +16,47 @@ export const recipeListReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
-        default: return state;
-    }
-}
-
-export const recipeDetailsReducer = (state = initialState, action) => {
-    switch(action.type) {
         case actions.FETCH_RECIPE_REQUEST:
             return {loading: true};
         case actions.FETCH_RECIPE_SUCCESS:
             return {
                 loading: false,
                 recipe: action.payload
-            }
+            };
         case actions.FETCH_RECIPE_FAILURE:
             return {
                 loading: false,
                 error: action.payload
-            }
+            };
+        case actions.UPDATE_RECIPE_REQUEST:
+            return {loading: true};
+        case actions.UPDATE_RECIPE_SUCCESS:
+            return {loading: false, success: true};
+        case actions.UPDATE_RECIPE_FAILURE:
+            return {loading: false, error: action.payload}; 
         default: return state;
     }
 }
+
+
+
+// export const recipeDetailsReducer = (state = initialState, action) => {
+//     switch(action.type) {
+//         case actions.FETCH_RECIPE_REQUEST:
+//             return {loading: true};
+//         case actions.FETCH_RECIPE_SUCCESS:
+//             return {
+//                 loading: false,
+//                 recipe: action.payload
+//             }
+//         case actions.FETCH_RECIPE_FAILURE:
+//             return {
+//                 loading: false,
+//                 error: action.payload
+//             }
+//         default: return state;
+//     }
+// }
 
 export const addRecipeReducer = (state = initialState, action) => {
     switch(action.type) {
@@ -45,7 +65,7 @@ export const addRecipeReducer = (state = initialState, action) => {
         case actions.ADD_RECIPE_SUCCESS:
             return console.log(action.payload)
         case actions.ADD_RECIPE_FAILURE:
-            return console.log(action.payload) 
+            return null 
         default: return state;
     }
 }
@@ -62,14 +82,14 @@ export const addRecipeReducer = (state = initialState, action) => {
 //     }
 // }
 
-// export const deleteRecipeReducer = (state = initialState, action) => {
-//     switch(action.type) {
-//         case actions.DELETE_RECIPE_REQUEST:
-//             return {loading: true};
-//         case actions.DELETE_RECIPE_SUCCESS:
-//             return {loading: false, success: true};
-//         case actions.DELETE_RECIPE_FAILURE:
-//             return {loading: false, error: action.payload};
-//         default: return state;
-//     }
-// }
+export const deleteRecipeReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case actions.DELETE_RECIPE_REQUEST:
+            return {loading: true};
+        case actions.DELETE_RECIPE_SUCCESS:
+            return {loading: false, success: true};
+        case actions.DELETE_RECIPE_FAILURE:
+            return {loading: false, error: action.payload};
+        default: return state;
+    }
+}
