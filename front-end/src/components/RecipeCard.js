@@ -34,6 +34,10 @@ function RecipeCard() {
                 </div>
                 <h1>{item.data[0].title}</h1>
             </div>
+            <div className='recipeCard_buttons'>
+              <button className='recipeCard_button'>Edit</button>
+              <button className='recipeCard_button' onClick={deleteItem}>Delete</button>
+            </div>
             <div className="recipeCard__body">
                 <img src={item.data[0].notes} alt="recipe photo"/>
                 <div className="recipeCard__body__info">
@@ -42,10 +46,6 @@ function RecipeCard() {
                     <h3>Instructions</h3>
                     <p>{item.data[0].instructions}</p>
                 </div>
-                <div className='recipeCard_buttons'>
-              <button className='recipeCard_button'>Edit</button>
-              <button className='recipeCard_button' onClick={deleteItem}>Delete</button>
-            </div>
             </div>
             </>
             : <h1>Loading...</h1>}
