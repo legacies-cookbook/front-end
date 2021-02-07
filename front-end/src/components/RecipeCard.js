@@ -1,15 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import {recipeDetails} from "../actions/RecipeActions";
+import {recipeDetails, deleteRecipe} from "../actions/RecipeActions";
 import {useParams} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 function RecipeCard() {
 
     const {id} = useParams()
+    const history = useHistory()
     console.log(id)
 
     const item = useSelector((state) => state.recipe.recipe)
     
+    const deleteItem = async () => {
+        await dispatch(deleteRecipe(id));
+        history.push("/recipes")
+    }
 
     const dispatch = useDispatch()
     
@@ -36,6 +42,10 @@ function RecipeCard() {
                     <h3>Instructions</h3>
                     <p>{item.data[0].instructions}</p>
                 </div>
+                <div className='recipeCard_buttons'>
+              <button className='recipeCard_button'>Edit</button>
+              <button className='recipeCard_button' onClick={deleteItem}>Delete</button>
+            </div>
             </div>
             </>
             : <h1>Loading...</h1>}

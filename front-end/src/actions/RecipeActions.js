@@ -1,6 +1,5 @@
 import axiosWithAuth from "../utils/axiosWithAuth";
 import * as actions from "../constants/recipeConstants";
-import axios from "axios";
 
 // gets a list of all recipes
 export const listRecipes = () => (dispatch) => {
@@ -65,6 +64,26 @@ export const addNewRecipe = (recipe) => (dispatch) => {
 // //             }) 
 // //     }
 // // }
+
+export const updateRecipe = (title, source, type, ingredients, instructions, categories, id) => (dispatch) => {
+    dispatch({type: actions.UPDATE_RECIPE_REQUEST});
+    axiosWithAuth.put(`/recipes/${id}`, {
+      "title" : title,
+      "source" : source,
+      "type" : type,
+      "ingredients" : ingredients,
+      "instructions" : instructions,
+      "categories" : categories  
+    })
+    .then((res) => dispatch({type: actions.UPDATE_RECIPE_SUCCESS, payload: res}))
+    .catch((error) => {
+        dispatch({type: actions.ADD_RECIPE_FAILURE,
+            payload:
+                error.resposne && error.response.message
+                ? error.response.message
+                : error.message})
+    })
+}
 
  // Deletes a recipe
 export const deleteRecipe = (id) => (dispatch) => {

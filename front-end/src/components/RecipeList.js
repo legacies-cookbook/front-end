@@ -14,12 +14,11 @@ function RecipeList(props) {
 
     const dispatch = useDispatch();
 
-    const [loading, setLoading] = useState(false)
     
 
     useEffect(() =>  {
         dispatch(listRecipes());
-    }, [dispatch, loading])
+    }, [dispatch])
 
     const findRecipe = () => {
         console.log("clicked");
@@ -45,7 +44,7 @@ function RecipeList(props) {
               { !recipeList 
               ? <h1>Loading...</h1>
               : recipeList.map(recipe => {
-                    return <RecipeListCard key={recipe.id} id={recipe.id} title={recipe.title} source={recipe.source} photo={recipe.notes} type={recipe.type} reload={setLoading}/>
+                    return <RecipeListCard key={recipe.id} id={recipe.id} title={recipe.title} source={recipe.source} photo={recipe.notes} type={recipe.type} />
                 })}
             </div>
             </div>
