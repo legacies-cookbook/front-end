@@ -23,7 +23,7 @@ function App() {
   return (
       <Router>
         <div className="App">
-      {/* <ul>
+      <ul>
         <li>
           <Link to="/login">Login</Link>
         </li>
@@ -36,7 +36,7 @@ function App() {
         <li>
           <Link onClick={logout}>Logout</Link>
         </li>
-      </ul> */}
+      </ul>
           <Switch>
             <PrivateRoute exact path='/recipes'>
               <RecipeList />
