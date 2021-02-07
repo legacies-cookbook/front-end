@@ -7,7 +7,6 @@ export const recipeListReducer = (state = initialState, action) => {
         case actions.FETCH_RECIPES_REQUEST: 
             return {loading: true};
         case actions.FETCH_RECIPES_SUCCESS:
-            console.log("yes?")
             return {
                 loading: false,
                 recipes: action.payload
@@ -17,57 +16,39 @@ export const recipeListReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
-            case actions.ADD_RECIPE_REQUEST:
-                return {loading: true};
-            case actions.ADD_RECIPE_SUCCESS:
-                return {
-                    loading: true,
-                    recipies: [...state, action.payload],
-                }
-            case actions.ADD_RECIPE_FAILURE:
-                return {
-                    loading: false,
-                    error: action.payload
-                }
         default: return state;
     }
 }
 
-// export const recipeDetailsReducer = (state = initialState, action) => {
-//     switch(action.type) {
-//         case actions.FETCH_RECIPE_REQUEST:
-//             return {loading: true};
-//         case actions.FETCH_RECIPE_SUCCESS:
-//             return {
-//                 loading: false,
-//                 recipe: action.payload
-//             }
-//         case actions.FETCH_RECIPE_FAILURE:
-//             return {
-//                 loading: false,
-//                 error: action.payload
-//             }
-//         default: return state;
-//     }
-// }
+export const recipeDetailsReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case actions.FETCH_RECIPE_REQUEST:
+            return {loading: true};
+        case actions.FETCH_RECIPE_SUCCESS:
+            return {
+                loading: false,
+                recipe: action.payload
+            }
+        case actions.FETCH_RECIPE_FAILURE:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        default: return state;
+    }
+}
 
-// export const addRecipeReducer = (state = initialState, action) => {
-//     switch(action.type) {
-//         case actions.ADD_RECIPE_REQUEST:
-//             return {loading: true};
-//         case actions.ADD_RECIPE_SUCCESS:
-//             return {
-//                 loading: true,
-//                 recipies: [...state, action.payload],
-//             }
-//         case actions.ADD_RECIPE_FAILURE:
-//             return {
-//                 loading: false,
-//                 error: action.payload
-//             }
-//         default: return state;
-//     }
-// }
+export const addRecipeReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case actions.ADD_RECIPE_REQUEST:
+            return {loading: true};
+        case actions.ADD_RECIPE_SUCCESS:
+            return console.log(action.payload)
+        case actions.ADD_RECIPE_FAILURE:
+            return console.log(action.payload) 
+        default: return state;
+    }
+}
 
 // export const editRecipeReducer = (state = initialState, action) => {
 //     switch(action.type) {

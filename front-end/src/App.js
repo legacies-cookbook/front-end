@@ -9,6 +9,7 @@ import RecipeList from "./components/RecipeList";
 import Login from "./components/Login";
 import Registration from './components/Registration';
 import AddRecipe from './components/AddRecipe';
+import RecipeCard from "./components/RecipeCard";
 
 import './App.css';
 import './Login.css';
@@ -22,35 +23,35 @@ function App() {
   return (
       <Router>
         <div className="App">
-          <ul>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/recipes">Recipes</Link>
-            </li>
-            <li>
-              <Link onClick={logout}>Logout</Link>
-            </li>
-          </ul>
+      {/* <ul>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+        <li>
+          <Link to="/register">Register</Link>
+        </li>
+        <li>
+          <Link to="/recipes">Recipes</Link>
+        </li>
+        <li>
+          <Link onClick={logout}>Logout</Link>
+        </li>
+      </ul> */}
           <Switch>
             <PrivateRoute exact path='/recipes'>
               <RecipeList />
             </PrivateRoute>
-            {/* <PrivateRoute exact path='/add-recipe'>
+            <PrivateRoute exact path='/add'>
               <AddRecipe />
-            </PrivateRoute> */}
+            </PrivateRoute>
+            <PrivateRoute exact path='/details'>
+              <RecipeCard />
+            </PrivateRoute>
             <Route path='/login'>
               <Login />
             </Route>
             <Route path='/register'>
               <Registration />
-            </Route>
-            <Route path='/add'>
-              <AddRecipe />
             </Route>
           </Switch>
         </div>

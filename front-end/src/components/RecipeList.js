@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { useDispatch, useSelector, connect } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import RecipeListCard from "./RecipeListCard";
 import HeroImage from "../images/HeroImage.png";
-import {listRecipes, addNewRecipe} from "../actions/RecipeActions";
+import {listRecipes} from "../actions/RecipeActions";
 import {Link} from "react-router-dom";
 
 function RecipeList(props) {
@@ -37,7 +37,7 @@ function RecipeList(props) {
                     <input type="text" placeholder="placeholder text"/>
                     <button type="submit">test</button>
                 </form>
-                <Link to="/add"> {/*Tried to link to addRecipe page but nothing loads"*/}
+                <Link to="/add">
                     Add New Recipe 
                 </Link>
                 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { listRecipes, addNewRecipe } from '../actions/RecipeActions';
+import { useDispatch, useSelector} from 'react-redux';
+import { addNewRecipe } from '../actions/RecipeActions';
+import { useHistory } from 'react-router-dom'; 
 import './AddRecipe.css';
 
 const initialState = {
@@ -9,21 +9,38 @@ const initialState = {
   source: '',
   ingredients: '',
   instructions: '',
-  category: ''
+  photo: '',
+  categories: [3]
 };
 
 const AddRecipe = () => {
-  const [formState, setFormState] = useState(initialState);
+
+  const history = useHistory()
+
+  const addRecipe = useSelector((state) => console.log(state))
+  const [formState, setFormState] = useState({
+    title: '',
+    source: '',
+    ingredients: '',
+    instructions: '',
+    photo: '',
+    categories: [5]
+  });
+
+  const dispatch = useDispatch();
 
   const handleChanges = e => {
     e.persist();
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const submitForm = e => {
+  const submitForm = async(e) => {
     e.preventDefault();
-    addNewRecipe(formState);
+    console.log(formState)
+    await dispatch(addNewRecipe(formState))
     setFormState(initialState);
+    history.push("/recipes")
+    
   };
 
   return (
@@ -37,6 +54,15 @@ const AddRecipe = () => {
           id='add-title'
           placeholder='Title'
           value={formState.title}
+          onChange={handleChanges}
+        />
+        <input
+          type='text'
+          name='photo'
+          className='add-form-fields'
+          id='add-photo'
+          placeholder='photo URL'
+          value={formState.photo}
           onChange={handleChanges}
         />
         <input
@@ -70,13 +96,11 @@ const AddRecipe = () => {
           <option value='Lunch'>Lunch</option>
           <option value='Dinner'>Dinner</option>
           <option value='Dessert'>Dessert</option>
-          <option value='Gluten Free'>Gluten Free</option>
-          <option value='Vegetarian'>Vegetarian</option>
         </select>
-        <button className='add-form-fields' id='add-button'>Save Edits</button>
+        <button className='add-form-fields' id='add-button'>Save Recipe</button>
       </form>
     </div>
   )
 };
 
-export default connect({ listRecipes, addNewRecipe })(AddRecipe);
+export default AddRecipe;

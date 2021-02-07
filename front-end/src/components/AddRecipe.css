@@ -29,7 +29,7 @@
   width: 50%;
 }
 
-#category, #add-button, #add-title, #add-source {
+#category, #add-button, #add-title, #add-source #add-photo {
   width: auto;
 }
 

@@ -18,9 +18,9 @@ const reducer = combineReducers({
     register: userReducer.userRegisterReducer,
     // Recipe Reducers
     recipeList: recipeReducer.recipeListReducer,
-    // recipeDetails: recipeReducer.recipeDetailsReducer,
+    recipeInfo: recipeReducer.recipeDetailsReducer,
     // updateRecipe: recipeReducer.editRecipeReducer,
-    
+    addRecipe: recipeReducer.addRecipeReducer,
     // deleteRecipe: recipeReducer.deleteRecipeReducer,
   });
 

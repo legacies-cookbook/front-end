@@ -1,8 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import axios from 'axios';
-import { useDispatch, useSelector, connect } from 'react-redux';
-import { Link } from 'react-router-dom'; 
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom'; 
 import { login } from '../actions/UserActions';
 
 
@@ -24,10 +23,12 @@ const validate = values => {
    return errors;
  };
  
-const LoginForm = (state) => {
+const LoginForm = (props) => {
 
   const userLogin = useSelector((state) => state.login);
   const {userInfo, loading, error} = userLogin;
+
+  const history = useHistory()
   
   const dispatch = useDispatch();
 
@@ -39,10 +40,12 @@ const LoginForm = (state) => {
      ,
       validate,
       
-      onSubmit: values => {
+      onSubmit: async(values) => {
         console.log(values)
-        dispatch(login(values.username, values.password))
+        await dispatch(login(values.username, values.password))
+        history.push("/recipes")
         FormReset();
+
       // axios
       // .post('https://reqres.in/api/users', values)
       // .then(res => {

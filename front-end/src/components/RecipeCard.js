@@ -1,46 +1,47 @@
-// import React from 'react';
-// import { connect } from 'react-redux';
-// // import data from "./data";
-
-// function RecipeCard() {
+import React, {useEffect, useState} from 'react';
+import { useDispatch, useSelector} from 'react-redux';
+import {recipeDetails} from "../actions/RecipeActions";
 
 
-//     // const recipe = data[1];
-//     // console.log(recipe);
+function RecipeCard({id}) {
 
-//     return (
-//         <div className="recipeCard">
-//             <div className="recipeCard__top">
-//                 <div className={recipe.type}>
-//                     <h2>{recipe.type}</h2>
-//                 </div>
-//                 <h1>{recipe.title}</h1>
-//             </div>
-//             <div className="recipeCard__body">
-//                 <img src={recipe.photo} alt="recipe photo"/>
-//                 <div className="recipeCard__body__info">
-//                     <h3>Ingredients</h3>
-//                     {recipe.ingredients.map(ingredient => {
-//                         return <p>{ingredient}</p>
-//                     })}
-//                     <h3>Instructions</h3>
-//                     {recipe.instructions.map(step => {
-//                         return (
-//                             <div className="recipeCard__body_step">
-//                                 <p><strong>{step.step})</strong> {step.instructions}</p>
-//                             </div>
-//                     )
-//                     })}
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
+    console.log(id)
 
-// const mapStateToProps = (state) => {
-//     return {
-//         recipes: state.recipes
-//     }
-// }
+    const item = useSelector((state) => state.recipeInfo.recipe)
+    
 
-// export default connect(mapStateToProps)(RecipeCard)
+    const dispatch = useDispatch()
+    
+    useEffect(async() => {
+        await dispatch(recipeDetails(3))
+    }, [dispatch])
+
+    return (
+        <div className="recipeCard">
+            {item
+            ?
+            <>
+            <div className="recipeCard__top">
+                <div className={item.data[0].type}>
+                    <h2>{item.data[0].type}</h2>
+                </div>
+                <h1>{item.data[0].title}</h1>
+            </div>
+            <div className="recipeCard__body">
+                <img src={item.data[0].notes} alt="recipe photo"/>
+                <div className="recipeCard__body__info">
+                    <h3>Ingredients</h3>
+                    <p>{item.data[0].ingredients}</p>
+                    <h3>Instructions</h3>
+                    <p>{item.data[0].instructions}</p>
+                </div>
+            </div>
+            </>
+            : <h1>Loading...</h1>}
+        </div>
+    )
+}
+
+
+
+export default RecipeCard

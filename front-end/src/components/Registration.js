@@ -1,7 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import { register } from '../actions/UserActions';
 
@@ -38,11 +37,13 @@ const validate = values => {
  
   const Registration = (props) => {
 
+    const history = useHistory();
+
     const userRegister = useSelector((state) => state.register);
     const {userInfo, loading, error} = userRegister;
     const dispatch = useDispatch();
 
-    console.log(props); 
+
     const formik = useFormik({
       initialValues: {
         username: '',
@@ -53,9 +54,10 @@ const validate = values => {
      ,
       validate,
 
-    onSubmit: values => {
+    onSubmit: async(values) => {
       console.log("values", values)
-      dispatch(register(values.username, values.password))
+      await dispatch(register(values.username, values.password))
+      history.push("/login")
       FormReset();
       
       // axios

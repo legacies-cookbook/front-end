@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import RecipeCard from "./RecipeCard";
+import {Route, Link} from "react-router-dom"; 
 
 function RecipeListCard({title, source, photo, type, id}) {
 
@@ -12,7 +14,13 @@ function RecipeListCard({title, source, photo, type, id}) {
                 <p>{type}</p>
             </div>
             <h2>{title}</h2>
-            <button className="recipe_details">View Recipe</button>
+            <Link to="/details">
+                View Recipe
+                </Link>
+            <Route path="/details">
+                <RecipeCard id={id} />
+            </Route>
+                
         </div>
     )
 }
