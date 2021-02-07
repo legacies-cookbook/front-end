@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 function RecipeList(props) {
 
     const recipeList = useSelector((state) => state.recipeList.recipes)
-    console.log(recipeList)
+    console.log('Recipe List: ', recipeList)
     
     const addRecipes = useSelector((state) => state.addNewRecipe)
 

@@ -25,7 +25,7 @@ function App() {
         <div className="App">
       <ul>
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/">Login</Link>
         </li>
         <li>
           <Link to="/register">Register</Link>
@@ -38,16 +38,16 @@ function App() {
         </li>
       </ul>
           <Switch>
-            <PrivateRoute exact path='/recipes'>
+            <PrivateRoute path='/recipes'>
               <RecipeList />
             </PrivateRoute>
-            <PrivateRoute exact path='/add'>
+            <PrivateRoute path='/add'>
               <AddRecipe />
             </PrivateRoute>
-            <PrivateRoute exact path='/details'>
+            <PrivateRoute path='/details'>
               <RecipeCard />
             </PrivateRoute>
-            <Route path='/login'>
+            <Route exact path='/'>
               <Login />
             </Route>
             <Route path='/register'>
