@@ -35,7 +35,7 @@ function RecipeCard() {
                 <h1>{item.data[0].title}</h1>
             </div>
             <div className='recipeCard_buttons'>
-              <button className='recipeCard_button'>Edit</button>
+              <button className='recipeCard_button' onClick={() => history.push('/recipes')}>Edit</button>
               <button className='recipeCard_button' onClick={deleteItem}>Delete</button>
             </div>
             <div className="recipeCard__body">
