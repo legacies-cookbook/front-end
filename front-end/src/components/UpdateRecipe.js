@@ -1,7 +1,7 @@
 // import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import { connect } from 'react-redux';
-// import { listRecipes, updateRecipe } from '../actions/RecipeActions';
+// import { recipeDetails, updateRecipe } from '../actions/RecipeActions';
 // import './UpdateRecipe.css';
 
 // const initialState = {
@@ -16,7 +16,7 @@
 //   const [formState, setFormState] = useState(initialState);
 
 //   useEffect(() => {
-//     listRecipes();
+//     recipeDetails();
 //   }, []);
 
 //   const handleChanges = e => {
@@ -26,7 +26,7 @@
 
 //   const submitForm = e => {
 //     e.preventDefault();
-//     updateRecipe();
+//     updateRecipe(formState);
 //     setFormState(initialState);
 //   };
 
@@ -83,4 +83,4 @@
 //   )
 // };
 
-// export default connect({ listRecipes, updateRecipe })(UpdateRecipe);
+// export default connect({ recipeDetails, updateRecipe })(UpdateRecipe);
