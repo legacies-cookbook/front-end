@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { recipeDetails, updateRecipe } from '../actions/RecipeActions';
 import { useDispatch, useSelector} from 'react-redux';
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import './UpdateRecipe.css';
 
 const initialState = {
@@ -22,13 +22,14 @@ const initialState = {
 const UpdateRecipe = () => {
   const [formState, setFormState] = useState(initialState);
   const { id } = useParams()
+  const history = useHistory();
 
-  const recipe = useSelector((state) => state.recipe.recipe);
+  const recipe = useSelector((state) => console.log(state));
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(recipeDetails(id));
-  }, [dispatch]);
+  }, [id]);
 
   // useEffect(() => {
   //   axiosWithAuth()
@@ -45,10 +46,11 @@ const UpdateRecipe = () => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const submitForm = e => {
+  const submitForm = async(e) => {
     e.preventDefault();
-    updateRecipe(formState);
+    await dispatch(updateRecipe(formState));
     setFormState(initialState);
+    history.push('/recipes')
   };
 
   return (

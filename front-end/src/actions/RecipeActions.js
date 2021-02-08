@@ -67,7 +67,7 @@ export const addNewRecipe = (recipe) => (dispatch) => {
 
 export const updateRecipe = (title, source, type, ingredients, instructions, categories, id) => (dispatch) => {
     dispatch({type: actions.UPDATE_RECIPE_REQUEST});
-    axiosWithAuth.put(`/recipes/${id}`, {
+    axiosWithAuth().put(`/recipes/${id}`, {
       "title" : title,
       "source" : source,
       "type" : type,
