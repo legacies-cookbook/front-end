@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import { recipeDetails, updateRecipe } from '../actions/RecipeActions';
 import { useDispatch, useSelector} from 'react-redux';
 import {useParams} from "react-router-dom";
@@ -20,14 +21,24 @@ const initialState = {
 
 const UpdateRecipe = () => {
   const [formState, setFormState] = useState(initialState);
-  const {id} = useParams()
+  const { id } = useParams()
 
-  const recipe = useSelector((state) => console.log(state));
-  const dispatch = useDispatch()
+  const recipe = useSelector((state) => state.recipe.recipe);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(recipeDetails(id));
-  }, []);
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get(`/recipes/${id}`)
+  //     .then(res => {
+  //       console.log(res.data)
+  //       setFormState(res.data)
+  //     })
+  //     .catch(err => console.log(err));
+  // }, [id])
 
   const handleChanges = e => {
     e.persist();
